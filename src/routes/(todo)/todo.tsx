@@ -62,7 +62,7 @@ function RouteComponent() {
     <div className="p-4">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" onClick={handleToggle} aria-label="Toggle dark mode">
+          <Button variant="ghost" size="icon" onClick={handleToggle} aria-label="Toggle dark mode" className='cursor-pointer'>
             {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </Button>
           <h1 className="text-2xl font-bold ml-2">Todo List</h1>

@@ -4,10 +4,18 @@ import { TodoCard, type Todo } from './todoCard';
 import { Skeleton } from "../ui/skeleton";
 
 export const TodoList = ({ todos, isLoading, isError, refetch }: any) => {
-
 	const handleToggleCompleted = async (id: number, completed: boolean) => {
 		try {
 			await todoService.toggleCompleted(id, completed);
+			refetch();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleEdit = async (id: number, title: string, description: string) => {
+		try {
+			await todoService.updateTask(id, { title, description });
 			refetch();
 		} catch (error) {
 			console.error(error);
@@ -35,7 +43,7 @@ export const TodoList = ({ todos, isLoading, isError, refetch }: any) => {
 	};
 
 	return (
-        <div className="flex gap-2 flex-wrap justify-end">
+		<div className="flex gap-2 flex-wrap justify-center">
 			{todos && (todos as Todo[]).length > 0 ? (
 				(todos as Todo[]).map((todo) => (
 					<TodoCard
@@ -43,6 +51,7 @@ export const TodoList = ({ todos, isLoading, isError, refetch }: any) => {
 						todo={todo}
 						onToggleCompleted={handleToggleCompleted}
 						onDelete={handleDelete}
+						onEdit={handleEdit}
 					/>
 				))
 			) : (

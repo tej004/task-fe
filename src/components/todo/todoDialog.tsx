@@ -47,16 +47,18 @@ export const TodoDialog: React.FC<TodoDialogProps> = ({
 				</div>
 				<div className='space-y-2'>
 					<Label htmlFor="description">Description</Label>
-					<Input
-						id="description"
-						value={description}
-						onChange={e => setDescription(e.target.value)}
-						required
-						placeholder="Enter todo description"
-					/>
+						<textarea
+							id="description"
+							value={description}
+							onChange={e => setDescription(e.target.value)}
+							required
+							placeholder="Enter todo description"
+							rows={4}
+							className="w-full px-3 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+						/>
 				</div>
 				<DialogFooter>
-					<Button type="submit" disabled={loading}>
+					<Button type="submit" disabled={loading} className='cursor-pointer'>
 						{loading ? 'Saving...' : submitLabel}
 					</Button>
 				</DialogFooter>
